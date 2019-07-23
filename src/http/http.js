@@ -1,20 +1,13 @@
 import axios from 'axios';
-import {message } from 'ant-design-vue'
-
-
-
-
-
-
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = '';
+axios.defaults.baseURL ='http://5d36660586300e0014b641b8.mockapi.io/';
 
 
 //http request 拦截器
 axios.interceptors.request.use(
   config => {
     config.headers = {
-      'Content-Type': 'application/json'
+      'Content-Type':'application/json'
     }
     return config;
   },
@@ -36,7 +29,6 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    message.error('opps')
     return Promise.reject(error)
   }
 )
@@ -49,10 +41,10 @@ axios.interceptors.response.use(
  * @returns {Promise}
  */
 
-export function get(url, params = {}) {
-  return new Promise((resolve, reject) => {
-    axios.get(url, {
-      params: params
+export function get(url,params={}){
+  return new Promise((resolve,reject) => {
+    axios.get(url,{
+      params:params
     })
       .then(response => {
         resolve(response.data);
@@ -71,12 +63,12 @@ export function get(url, params = {}) {
  * @returns {Promise}
  */
 
-export function post(url, data = {}) {
-  return new Promise((resolve, reject) => {
-    axios.post(url, data)
+export function post(url,data = {}){
+  return new Promise((resolve,reject) => {
+    axios.post(url,data)
       .then(response => {
         resolve(response.data);
-      }, err => {
+      },err => {
         reject(err)
       })
   })
@@ -89,12 +81,12 @@ export function post(url, data = {}) {
  * @returns {Promise}
  */
 
-export function patch(url, data = {}) {
-  return new Promise((resolve, reject) => {
-    axios.patch(url, data)
+export function patch(url,data = {}){
+  return new Promise((resolve,reject) => {
+    axios.patch(url,data)
       .then(response => {
         resolve(response.data);
-      }, err => {
+      },err => {
         reject(err)
       })
   })
@@ -107,29 +99,27 @@ export function patch(url, data = {}) {
  * @returns {Promise}
  */
 
-export function put(url, data = {}) {
-  return new Promise((resolve, reject) => {
-    axios.put(url, data)
+export function put(url,data = {}){
+  return new Promise((resolve,reject) => {
+    axios.put(url,data)
       .then(response => {
         resolve(response.data);
-      }, err => {
+      },err => {
         reject(err)
       })
   })
 }
 
 /**
- * 封装delete方法
+ * 封装get方法
  * @param url
  * @param data
  * @returns {Promise}
  */
 
-export function del(url, params = {}) {
-  return new Promise((resolve, reject) => {
-    axios.delete(url, {
-      params: params
-    })
+export function del(url){
+  return new Promise((resolve,reject) => {
+    axios.delete(url)
       .then(response => {
         resolve(response.data);
       })

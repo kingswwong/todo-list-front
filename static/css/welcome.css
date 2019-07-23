@@ -1,0 +1,19 @@
+@font-face {
+  font-family: myfont;
+  src: url("../font/font.otf")
+}
+#welcome{
+  /*background-image: linear-gradient(to top, #fff,#001529);*/
+  background-color: black;
+  height:100%;
+  width:100%;
+  position:fixed;
+  text-align: center;
+}
+
+#welcome h1{
+  font-family: myfont;
+  margin-top: 200px;
+  color: white;
+  font-size: 50px;
+}
