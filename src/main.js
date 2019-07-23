@@ -3,13 +3,21 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// import store from './store'
+// import '../static/css/global.css'
+// import '../static/css/checkbox.css'
+import 'ant-design-vue/dist/antd.css'
+import Antd from 'ant-design-vue'
 
 Vue.config.productionTip = false
+
+Vue.use(Antd)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  // store,
   components: { App },
   template: '<App/>'
 })
