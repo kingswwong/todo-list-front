@@ -10,12 +10,12 @@
     </div>
     <div>
       <transition name="slide-fade">
-        <a-input placeholder="Input your Name" v-if="!startButtonShow" size="large" style="width: 150px"/>
+        <a-input placeholder="Input your Name" v-if="!startButtonShow" size="large" style="width: 150px" v-model="userName"/>
       </transition>
     </div>
     <div style="margin-top: 20px">
       <transition name="slide-fade">
-        <a-button type="dashed" ghost size="large" v-if="!startButtonShow" @click="setUserName" v-model="userName">Go</a-button>
+        <a-button type="dashed" ghost size="large" v-if="!startButtonShow" @click="setUserName" >Go</a-button>
       </transition>
     </div>
   </div>
@@ -33,7 +33,7 @@
     methods:{
       setUserName() {
         this.$store.commit('setUserName',this.userName)
-        this.$router.push({path:'/main'})
+        this.$router.push({path:'/main/list'})
       }
     }
   }

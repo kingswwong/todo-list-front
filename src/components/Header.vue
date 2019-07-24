@@ -5,9 +5,10 @@
       theme="dark"
       mode="horizontal"
       :style="{ lineHeight: '64px',textAlign: 'right'}"
+      @click="exit"
     >
       <a-menu-item key="user">
-        <a-icon type="user" />
+        <a-icon type="user" />Hello,{{userName}}
       </a-menu-item>
       <a-menu-item key="logout">
         <a-icon type="logout" />
@@ -18,7 +19,21 @@
 
 <script>
   export default {
-    name: "Header"
+    name: "Header",
+    computed:{
+      userName(){
+        return this.$store.state.userName
+      }
+    },
+    methods:{
+      exit(e){
+        if(e.key === 'logout'){
+          this.$store.commit('setUserName','')
+          this.$store.commit('changeContentComponent','')
+          this.$router.push({path:'/'})
+        }
+      }
+    }
   }
 </script>
 

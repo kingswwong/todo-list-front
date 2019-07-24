@@ -3,11 +3,14 @@
     <a-modal
       title="UpdateItem"
       :visible="visit"
-      @ok="handleOk"
       :confirmLoading="confirmLoading"
       @cancel="handleCancel"
+      footer=""
     >
-      <Item  :item="item"></Item>
+      <Item  :item="item" ></Item>
+      <template slot="footer">
+
+      </template>
     </a-modal>
   </div>
 </template>
@@ -21,11 +24,6 @@
     props: {
       id: String
     },
-    mounted(){
-      this.$get('/todoapp/' + this.id).then((res) => {
-        this.item = res
-      })
-    },
     data() {
       return {
         ModalText: 'Content of the modal',
@@ -35,15 +33,14 @@
       }
     },
     methods: {
-      handleOk(e) {
-        this.ModalText = 'The modal will be closed after two seconds';
-        this.confirmLoading = true;
-      },
       handleCancel(e) {
         this.visit = false
       },
-      changeVisable(){
-        this.visit = true
+      showDialog(id){
+        this.$get('/todoapp/' + id).then((res) => {
+          this.item = res
+          this.visit = true
+        })
       }
 
     }

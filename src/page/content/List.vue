@@ -8,7 +8,9 @@
     >
       <a-list-item slot="renderItem" slot-scope="item, index" >
         <a slot="actions"><a-switch v-model="item.isFinish" checkedChildren="finish" unCheckedChildren="ready" @change="changeStatus(item)"/></a>
-        <a slot="actions" @click="editItem(item.id)">Edit</a>
+        <a slot="actions">
+          <a href="#" @click="editItem(item.id)">Edit</a>
+        </a>
         <a slot="actions">
           <a-popconfirm title="Are you sure？"  @confirm="delItem(item.id)" >
             <a-icon slot="icon" type="question-circle-o" style="color: red" />
@@ -59,8 +61,7 @@
         this.$put('/todoapp/' + item.id,item)
       },
       editItem(id){
-        this.$refs.dialog.changeVisable()
-        this.id = id
+        this.$refs.dialog.showDialog(id)
       }
     }
   }

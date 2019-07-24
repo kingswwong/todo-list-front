@@ -7,7 +7,7 @@
       <Sider/>
       <a-layout style="padding: 0 24px 24px">
         <a-layout-content :style="{ background: '#fff', padding: '24px', margin: '20px', minHeight: '100%' }">
-          <component :is="currentTabComponent"></component>
+          <router-view/>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -17,24 +17,16 @@
 <script>
   import Header from "../components/Header";
   import Sider from "../components/Sider";
-  import List from "./content/List";
-  import Item from "./content/Item";
 
   export default {
     name: "Welcome",
-    components: {Sider, Header,List,Item},
+    components: {Sider, Header},
     data() {
       return {
         collapsed: false,
       }
 
-    },
-    computed:{
-      currentTabComponent(){
-        return this.$store.state.currentComponent
-      }
-    },
-    methods: {}
+    }
   }
 </script>
 
