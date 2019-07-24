@@ -8,14 +8,14 @@ import '../static/css/welcome.css'
 import '../static/css/animation.css'
 import 'ant-design-vue/dist/antd.css'
 import Antd from 'ant-design-vue'
-import {post,get,patch,put,del} from './http/http'
+// import {post,get,patch,put,del} from './http/http'
 
 Vue.config.productionTip = false
-Vue.prototype.$post=post;
-Vue.prototype.$get=get;
-Vue.prototype.$patch=patch;
-Vue.prototype.$put=put;
-Vue.prototype.$del=del;
+// Vue.prototype.$post=post;
+// Vue.prototype.$get=get;
+// Vue.prototype.$patch=patch;
+// Vue.prototype.$put=put;
+// Vue.prototype.$del=del;
 
 Vue.use(Antd)
 

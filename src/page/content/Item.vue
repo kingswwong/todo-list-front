@@ -1,6 +1,6 @@
 <template>
   <div id="form">
-    <a-form :layout="formLayout" @submit="addItem" :form="form">
+    <a-form :layout="formLayout"  :form="form">
       <a-form-item
         label="Title"
         :label-col="formItemLayout.labelCol"
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+  import {createItem,updateItem} from "../../api/item";
+
   export default {
     name: "Item",
     props: {
@@ -45,9 +47,16 @@
         form: this.$form.createForm(this)
       };
     },
+    mounted(){
+      this.form.setFieldsValue({
+        item:{
+          title: this.item.title,
+          content: this.item.content,
+        }
+      })
+    },
     watch:{
       item(newValue){
-        console.log(newValue)
         this.form.setFieldsValue({
           item:{
             title: newValue.title,
@@ -76,15 +85,16 @@
         this.form.validateFields((err, values) => {
           if (!err) {
             if(this.item.id !== ''){
-              let updateItem = {
+              let theUpdateItem = {
                 content: values.item.content,
                 title: values.item.title
               }
-              this.$put('/todoapp/'+this.item.id,updateItem).then(() => {
+              updateItem(this.item.id,theUpdateItem).then(() => {
                 this.$message.success('Update Success', 5);
+                this.$emit('refresh');
               })
             }else{
-              this.$post('/todoapp', values.item).then(() => {
+              createItem(values.item).then(() => {
                 this.$message.success('Create Success', 5);
                 this.$router.push({path:'/main/list'})
               })

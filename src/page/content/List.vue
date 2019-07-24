@@ -8,8 +8,8 @@
     >
       <a-list-item slot="renderItem" slot-scope="item, index" >
         <a slot="actions"><a-switch v-model="item.isFinish" checkedChildren="finish" unCheckedChildren="ready" @change="changeStatus(item)"/></a>
-        <a slot="actions">
-          <a href="#" @click="editItem(item.id)">Edit</a>
+        <a slot="actions" @click="editItem(item.id)">
+          <a href="#">Edit</a>
         </a>
         <a slot="actions">
           <a-popconfirm title="Are you sure？"  @confirm="delItem(item.id)" >
@@ -30,6 +30,7 @@
 <script>
 
   import Dialog from "../../components/Dialog";
+  import {getAllItem,deleteItem,updateItem} from "../../api/item"
   export default {
     name: "List",
     components: {Dialog},
@@ -48,17 +49,17 @@
     },
     methods:{
       getAll(){
-        this.$get('/todoapp').then((res) => {
+        getAllItem().then((res) => {
           this.itemList = res
         })
       },
       delItem(id){
-        this.$del('/todoapp/' + id).then(() => {
+        deleteItem(id).then(() => {
           this.getAll()
         })
       },
       changeStatus(item){
-        this.$put('/todoapp/' + item.id,item)
+        updateItem(item.id, item)
       },
       editItem(id){
         this.$refs.dialog.showDialog(id)

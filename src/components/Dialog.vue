@@ -7,7 +7,7 @@
       @cancel="handleCancel"
       footer=""
     >
-      <Item  :item="item" ></Item>
+      <Item  :item="item" @refresh="refresh"></Item>
       <template slot="footer">
 
       </template>
@@ -17,6 +17,7 @@
 
 <script>
   import Item from "../page/content/Item";
+  import {getItemById} from "../api/item";
 
   export default {
     name: "Dialog",
@@ -33,16 +34,18 @@
       }
     },
     methods: {
+      refresh(){
+        this.visit = false
+      },
       handleCancel(e) {
         this.visit = false
       },
       showDialog(id){
-        this.$get('/todoapp/' + id).then((res) => {
+        getItemById(id).then((res) => {
           this.item = res
           this.visit = true
         })
       }
-
     }
   }
 </script>
